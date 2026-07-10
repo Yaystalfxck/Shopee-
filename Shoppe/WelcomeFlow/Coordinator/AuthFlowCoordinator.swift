@@ -20,7 +20,11 @@ class AuthFlowCoordinator {
         let registrationViewController = RegistrationViewController()
         registrationViewController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(registrationViewController, animated: true)
-
+        
+        registrationViewController.buttonAction = {[weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+            
 }
     
     func showWelcome() {

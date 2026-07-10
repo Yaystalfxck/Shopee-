@@ -10,11 +10,17 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
+    var buttonAction: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let registrationView = RegistrationView()
         self.view = registrationView
+        
+        registrationView.buttonTappedAction = {[weak self] in
+            self?.buttonAction?()
+        }
         
     }
     

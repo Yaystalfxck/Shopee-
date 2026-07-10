@@ -11,7 +11,7 @@ import UIKit
 extension RegistrationView {
     
     enum Title {
-        static let label = "Create Account"
+        static let label = "Create\nAccount"
         static let emailTextfield = "Email"
         static let passwordTextfield = "Password"
         static let number = "Your number"
@@ -33,5 +33,18 @@ extension RegistrationView {
     }
     enum Image {
         static let britishFlag: UIImage = .britishFlag
+    }
+}
+extension UITextField {
+    func setLeftPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
+    func setRightPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }
