@@ -46,7 +46,6 @@ class RegistrationView: UIView {
     lazy var passwordTextField: UITextField = makeTextField(placeholder: Title.passwordTextfield, isSecure: true)
     lazy var phoneTextField: UITextField = makeTextField(placeholder: Title.number, keyboardType: .phonePad)
     
-    
     private let flagImageView: UIImageView = {
         let imageView = UIImageView(image: Image.britishFlag)
         imageView.contentMode = .scaleAspectFit
@@ -92,12 +91,20 @@ class RegistrationView: UIView {
     
     var buttonTappedAction: (() -> Void)?
     
+    var buttonTappedActionDone: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        
         setupBackgroundShapes()
         setupLayout()
+        
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(done), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        addGestureRecognizer(tapGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -287,7 +294,15 @@ class RegistrationView: UIView {
         avatarContainer.layer.addSublayer(dashedCircleLayer)
     }
     
+    
+    @objc private func done() {
+        buttonTappedActionDone?()
+    }
+    
     @objc private func cancel() {
         buttonTappedAction?()
+    }
+    @objc private func dismissKeyboard() {
+        endEditing(true)
     }
 }

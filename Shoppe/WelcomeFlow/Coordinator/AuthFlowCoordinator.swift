@@ -24,6 +24,10 @@ class AuthFlowCoordinator {
         registrationViewController.buttonAction = {[weak self] in
             self?.navigationController.popViewController(animated: true)
         }
+        
+        registrationViewController.buttonActionRegistartion = { [weak self] in
+            print("Пользователь добавлен")
+        }
             
 }
     
