@@ -34,6 +34,14 @@ class AuthFlowCoordinator {
         let loginViewController = LoginViewController()
         loginViewController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(loginViewController, animated: true)
+        
+        loginViewController.TapEscape = {[weak self] in
+            self?.navigationController.popViewController(animated: true)
+            
+        }
+        loginViewController.TapDone = {[weak self] in
+            print("Успешный вход")
+        }
     }
     
     

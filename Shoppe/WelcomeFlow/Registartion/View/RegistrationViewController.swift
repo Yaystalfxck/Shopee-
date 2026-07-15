@@ -35,6 +35,7 @@ class RegistrationViewController: UIViewController {
         registrationViewModel.onError = {[weak self] error in
             self?.showError(error)
         }
+        
     }
     private func handlerDoneTapped() {
         registrationViewModel.register(name: nil, email: registrationView.emailTextField.text, password: registrationView.passwordTextField.text, number: registrationView.phoneTextField.text)
