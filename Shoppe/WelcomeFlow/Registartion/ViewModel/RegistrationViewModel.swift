@@ -10,25 +10,23 @@ import Foundation
 
 class RegistrationViewModel {
     
-    private(set) var users: [RegistrationModel] = []
-    
-    static let shared = RegistrationViewModel()
+    private let userData = UserData.shared
     
     var onError: ((String) -> Void)?
-    
     var onRegistrationSuccess: (() -> Void)?
     
     func register(name: String?, email: String?, password: String?, number: String?) {
         
-        guard !users.contains(where: { $0.email == email }) else {
+        guard let email = email, isValidEmail(email) else {
+            onError?("Dont valid email")
+            return
+        }
+        
+        guard !userData.isEmailTaken(email) else {
             onError?("User already exists")
             return
         }
         
-        guard let email = email else {
-            onError?("Dont valid email")
-            return
-        }
         guard let password = password, password.count >= 6 else {
             onError?("Password")
             return
@@ -37,16 +35,14 @@ class RegistrationViewModel {
             onError?("Dont valid number")
             return
         }
-        let model = RegistrationModel(
-            name: name ?? "",
-            email: email,
-            password: password,
-            number:  number
-        )
         
-        users.append(model)
+        userData.add(name: name ?? "", email: email, password: password, number: number)
         
         onRegistrationSuccess?()
     }
     
+    private func isValidEmail(_ email: String) -> Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: email)
+    }
 }

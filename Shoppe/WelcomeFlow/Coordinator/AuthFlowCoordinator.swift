@@ -30,12 +30,22 @@ class AuthFlowCoordinator {
         }
             
 }
+    func showLogin() {
+        let loginViewController = LoginViewController()
+        loginViewController.modalPresentationStyle = .fullScreen
+        navigationController.pushViewController(loginViewController, animated: true)
+    }
+    
     
     func showWelcome() {
         let welcomeViewController = WelcomeViewController()
         
         welcomeViewController.onRegisterTapped = { [weak self] in
             self?.showRegistartion()
+        }
+        
+        welcomeViewController.onLoginTapped = {[weak self] in
+            self?.showLogin()
         }
         
         welcomeViewController.modalPresentationStyle = .fullScreen

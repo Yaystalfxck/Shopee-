@@ -21,7 +21,7 @@ extension RegistrationView {
     enum Color {
         static let mainColor: UIColor = .white
         static let secondColor: UIColor = .appMain
-        static let grayColor: UIColor = .appGray
+        static let grayColor: UIColor = .appWiteGray
     }
     enum Font {
         static func nunitoSansLight(size: CGFloat) -> UIFont {

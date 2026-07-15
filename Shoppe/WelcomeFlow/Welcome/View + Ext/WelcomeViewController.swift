@@ -10,7 +10,7 @@ import UIKit
 class WelcomeViewController: UIViewController {
     
     var onRegisterTapped: (() -> Void)?
-    
+    var onLoginTapped: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +19,10 @@ class WelcomeViewController: UIViewController {
             self?.onRegisterTapped?()
             
         }
+        welcomeView.onButtonCircleTapped = {[weak self] in
+            self?.onLoginTapped?()
+        }
+        
         self.view = welcomeView
         
     }

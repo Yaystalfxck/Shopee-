@@ -89,12 +89,12 @@ class WelcomeView: UIView {
     private lazy var stack: UIStackView = lastStack()
     
     var onButtonTapped: (() -> Void)?
-    
+    var onButtonCircleTapped: (() -> Void)?
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
+        buttonCircle.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -163,5 +163,8 @@ class WelcomeView: UIView {
     
     @objc func buttonTapped() {
         onButtonTapped?()
+    }
+    @objc func arrowButtonTapped() {
+        onButtonCircleTapped?()
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 struct RegistrationModel: Codable {
     
+    var id: UUID
     var name: String? = ""
     var email: String = ""
     var password: String = ""

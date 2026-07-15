@@ -10,7 +10,7 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    var registrationViewModel = RegistrationViewModel.shared
+    var registrationViewModel = RegistrationViewModel()
     let registrationView = RegistrationView()
     var buttonAction: (() -> Void)?
     var buttonActionRegistartion: (() -> Void)?
@@ -44,6 +44,10 @@ class RegistrationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        .portrait
     }
     
     private func showError(_ message: String) {
